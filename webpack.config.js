@@ -15,6 +15,8 @@ module.exports = {
     }),
   ],
 
+  mode: 'none',
+
   module: {
     rules: [
       {
