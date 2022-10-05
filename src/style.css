@@ -1,56 +1,57 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 ul {
-    list-style: none;
-    padding: 0px 0px;
+  list-style: none;
+  padding: 0 0;
 }
 
 #toDolist {
-    padding: 0px 10px;
-    margin: auto;
+  padding: 0 10px;
+  margin: auto;
 }
 
 #title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-#eachTask, #enterTask {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+#eachTask,
+#enterTask {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 i {
-    padding-right: 5px;
-    color: grey;
+  padding-right: 5px;
+  color: grey;
 }
 
 #addTask {
-    font-style: italic;
-    height: 20px;
-    border: none;
+  font-style: italic;
+  height: 20px;
+  border: none;
 }
 
 #clear {
-    height: 30px;
-    background-color: rgb(240, 240, 240);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: grey;
+  height: 30px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
 }
 
 @media screen and (min-width: 768px) {
-    #toDolist {
-        width: 70%;
-        margin: auto;
-    }
+  #toDolist {
+    width: 70%;
+    margin: auto;
+  }
 }
