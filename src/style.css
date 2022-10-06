@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-ul {
-  list-style: none;
-  padding: 0 0;
-}
-
 #toDolist {
   padding: 0 10px;
   margin: auto;
@@ -38,7 +33,7 @@ i {
   font-style: italic;
   height: 20px;
   border: none;
-  width: 50%;
+  width: 100%;
 }
 
 #clear {
@@ -64,4 +59,34 @@ button {
 
 .task {
   margin-top: 10px;
+}
+
+#addButton,
+.delButton {
+  font-size: 25px;
+}
+
+.task-item {
+  height: 20px;
+  border: none;
+  width: 80%;
+}
+
+.inputWidth {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+hr {
+  margin-top: 0;
+}
+
+#hrId {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0 0;
+  margin-top: 0;
 }
