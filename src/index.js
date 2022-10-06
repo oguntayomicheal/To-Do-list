@@ -1,39 +1,90 @@
 import _ from 'lodash';
 import './style.css';
 
-
-const taskArray = [
-    {
-        description : "I want to Eat",
-        completed : true,
-        index: 0
-    },
-    {
-        description : "cook my meal",
-        completed : false,
-        index: 1
-    },
-    {
-        description : "dance in the club",
-        completed : true,
-        index: 2
+class Task {
+    constructor(array) {
+        this.taskArray = array;
     }
 
-]
+    taskObject(addTask) {
+        const eachTask = {
+            description : addTask,
+            completed : false,
+            index: `${this.taskArray.length + 1}`
+        }
+        this.taskArray.push(eachTask);
+    }
 
+    removeTask(ptask) {
+        this.taskArray = this.taskArray.filter((task) => task !== ptask);
+    }
+}
+
+const addedTask = new Task([])
+
+
+
+const filledTask = document.getElementById('addButton')
+filledTask.addEventListener('click', () => {
+const myTask = document.getElementById('addTask')
+addedTask.taskObject(myTask.value)
+addToLocalStorage();
+displayList()
+myTask.value = '';
+})
+
+
+const displayList = () => {
 const list = document.getElementById('list')
+list.innerHTML = '';
+if (addedTask.taskArray.length) {
+    for (let i = 0; i < addedTask.taskArray.length; i+=1){
+        const li = document.createElement('div')
+        li.classList.add('eachTask')
+        list.appendChild(li)
 
- const createList = () => {
-    const sortedArray = taskArray.sort((a, b)=> a.index - b.index)
-    sortedArray.forEach((task) => {
-    const eachTask = document.createElement('li');
-    eachTask.innerHTML = `<div id="eachTask">
-        <div><input type="checkbox" name=" " class="task">
-        <label for="">${task.description}</label></div>
-        <i class="fa fa-ellipsis-v"></i>
-        </div><hr>`
-    list.appendChild(eachTask)
-  })
- }
+        const taskInput = document.createElement('div')
+        taskInput.innerHTML = `<input type="checkbox" name=" " class="task">
+        <label for="">${addedTask.taskArray[i].description}</label>`
+        li.appendChild(taskInput)
 
- document.addEventListener('DOMContentLoaded', createList)
+
+        const deleteButton = document.createElement('button')
+        deleteButton.classList.add('delButton')
+        deleteButton.innerHTML = `<i class="fa fa-ellipsis-v">`
+        
+        deleteButton.onclick = () => {
+            addedTask.removeTask(addedTask.taskArray[i]);
+            
+            addToLocalStorage();
+            displayList();
+        }
+
+        li.appendChild(deleteButton)    
+    }
+} else {
+    const noTask = document.createElement('p');
+    noTask.classList.add('no_task');
+    noTask.textContent = `No tasks added yet`;
+    list.appendChild(noTask)
+  }
+}
+
+
+
+const addToLocalStorage = () => {
+const stringifyArray = JSON.stringify(addedTask.taskArray);
+localStorage.setItem('storedTask', stringifyArray);
+}
+
+const getFromLocalStorage = () => {
+const stringifyArray = localStorage.getItem('storedTask');
+addedTask.taskArray = JSON.parse(stringifyArray);
+displayList()
+}
+
+if (localStorage.getItem('storedTask') == null) {
+addToLocalStorage();
+} else {
+getFromLocalStorage();
+}

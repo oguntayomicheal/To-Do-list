@@ -17565,7 +17565,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nul {\r\n  list-style: none;\r\n  padding: 0 0;\r\n}\r\n\r\n#toDolist {\r\n  padding: 0 10px;\r\n  margin: auto;\r\n}\r\n\r\n#title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\nh1 {\r\n  font-size: 20px;\r\n}\r\n\r\n#eachTask,\r\n#enterTask {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\ni {\r\n  padding-right: 5px;\r\n  color: grey;\r\n}\r\n\r\n#addTask {\r\n  font-style: italic;\r\n  height: 20px;\r\n  border: none;\r\n}\r\n\r\n#clear {\r\n  height: 30px;\r\n  background-color: rgb(240, 240, 240);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  color: grey;\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  #toDolist {\r\n    width: 70%;\r\n    margin: auto;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nul {\r\n  list-style: none;\r\n  padding: 0 0;\r\n}\r\n\r\n#toDolist {\r\n  padding: 0 10px;\r\n  margin: auto;\r\n}\r\n\r\n#title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\nh1 {\r\n  font-size: 20px;\r\n}\r\n\r\n.eachTask,\r\n#enterTask {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\ni {\r\n  padding-right: 5px;\r\n  color: grey;\r\n}\r\n\r\n#addTask {\r\n  font-style: italic;\r\n  height: 20px;\r\n  border: none;\r\n  width: 50%;\r\n}\r\n\r\n#clear {\r\n  height: 30px;\r\n  background-color: rgb(240, 240, 240);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  color: grey;\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  #toDolist {\r\n    width: 70%;\r\n    margin: auto;\r\n  }\r\n}\r\n\r\nbutton {\r\n  border: none;\r\n  background-color: white;\r\n}\r\n\r\n.task {\r\n  margin-top: 10px;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17798,42 +17798,93 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-const taskArray = [
-    {
-        description : "I want to Eat",
-        completed : true,
-        index: 0
-    },
-    {
-        description : "cook my meal",
-        completed : false,
-        index: 1
-    },
-    {
-        description : "dance in the club",
-        completed : true,
-        index: 2
+class Task {
+    constructor(array) {
+        this.taskArray = array;
     }
 
-]
+    taskObject(addTask) {
+        const eachTask = {
+            description : addTask,
+            completed : false,
+            index: `${this.taskArray.length + 1}`
+        }
+        this.taskArray.push(eachTask);
+    }
 
+    removeTask(ptask) {
+        this.taskArray = this.taskArray.filter((task) => task !== ptask);
+    }
+}
+
+const addedTask = new Task([])
+
+
+
+const filledTask = document.getElementById('addButton')
+filledTask.addEventListener('click', () => {
+const myTask = document.getElementById('addTask')
+addedTask.taskObject(myTask.value)
+addToLocalStorage();
+displayList()
+myTask.value = '';
+})
+
+
+const displayList = () => {
 const list = document.getElementById('list')
+list.innerHTML = '';
+if (addedTask.taskArray.length) {
+    for (let i = 0; i < addedTask.taskArray.length; i+=1){
+        const li = document.createElement('div')
+        li.classList.add('eachTask')
+        list.appendChild(li)
 
- const createList = () => {
-    const sortedArray = taskArray.sort((a, b)=> a.index - b.index)
-    sortedArray.forEach((task) => {
-    const eachTask = document.createElement('li');
-    eachTask.innerHTML = `<div id="eachTask">
-        <div><input type="checkbox" name=" " class="task">
-        <label for="">${task.description}</label></div>
-        <i class="fa fa-ellipsis-v"></i>
-        </div><hr>`
-    list.appendChild(eachTask)
-  })
- }
+        const taskInput = document.createElement('div')
+        taskInput.innerHTML = `<input type="checkbox" name=" " class="task">
+        <label for="">${addedTask.taskArray[i].description}</label>`
+        li.appendChild(taskInput)
 
- document.addEventListener('DOMContentLoaded', createList)
+
+        const deleteButton = document.createElement('button')
+        deleteButton.classList.add('delButton')
+        deleteButton.innerHTML = `<i class="fa fa-ellipsis-v">`
+        
+        deleteButton.onclick = () => {
+            addedTask.removeTask(addedTask.taskArray[i]);
+            
+            addToLocalStorage();
+            displayList();
+        }
+
+        li.appendChild(deleteButton)    
+    }
+} else {
+    const noTask = document.createElement('p');
+    noTask.classList.add('no_task');
+    noTask.textContent = `No tasks added yet`;
+    list.appendChild(noTask)
+  }
+}
+
+
+
+const addToLocalStorage = () => {
+const stringifyArray = JSON.stringify(addedTask.taskArray);
+localStorage.setItem('storedTask', stringifyArray);
+}
+
+const getFromLocalStorage = () => {
+const stringifyArray = localStorage.getItem('storedTask');
+addedTask.taskArray = JSON.parse(stringifyArray);
+displayList()
+}
+
+if (localStorage.getItem('storedTask') == null) {
+addToLocalStorage();
+} else {
+getFromLocalStorage();
+}
 })();
 
 /******/ })()

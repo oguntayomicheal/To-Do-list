@@ -22,7 +22,7 @@ h1 {
   font-size: 20px;
 }
 
-#eachTask,
+.eachTask,
 #enterTask {
   width: 100%;
   display: flex;
@@ -38,6 +38,7 @@ i {
   font-style: italic;
   height: 20px;
   border: none;
+  width: 50%;
 }
 
 #clear {
@@ -54,4 +55,13 @@ i {
     width: 70%;
     margin: auto;
   }
+}
+
+button {
+  border: none;
+  background-color: white;
+}
+
+.task {
+  margin-top: 10px;
 }
