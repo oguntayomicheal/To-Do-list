@@ -25,6 +25,16 @@ class Task {
             this.taskArray = this.taskArray.filter((task) => task !== ptask);
         }
 
+        getTasks() {
+            let tasks;
+            if (localStorage.getItem('storedTask') === null) {
+              tasks = [];
+            } else {
+              tasks = JSON.parse(localStorage.getItem('storedTask'));
+            }
+        
+            return tasks;
+          }
     }
     
 const addedTask = new Task([])
