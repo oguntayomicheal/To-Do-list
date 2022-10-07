@@ -17565,7 +17565,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n#toDolist {\r\n  padding: 0 10px;\r\n  margin: auto;\r\n}\r\n\r\n#title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\nh1 {\r\n  font-size: 20px;\r\n}\r\n\r\n.eachTask,\r\n#enterTask {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\ni {\r\n  padding-right: 5px;\r\n  color: grey;\r\n}\r\n\r\n#addTask {\r\n  font-style: italic;\r\n  height: 20px;\r\n  border: none;\r\n  width: 100%;\r\n}\r\n\r\n#clear {\r\n  height: 30px;\r\n  background-color: rgb(240, 240, 240);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  color: grey;\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  #toDolist {\r\n    width: 70%;\r\n    margin: auto;\r\n  }\r\n}\r\n\r\nbutton {\r\n  border: none;\r\n  background-color: white;\r\n}\r\n\r\n.task {\r\n  margin-top: 10px;\r\n}\r\n\r\n#addButton,\r\n.delButton {\r\n  font-size: 25px;\r\n}\r\n\r\n.task-item {\r\n  height: 20px;\r\n  border: none;\r\n  width: 80%;\r\n}\r\n\r\n.inputWidth {\r\n  width: 100%;\r\n  margin-bottom: 10px;\r\n}\r\n\r\nhr {\r\n  margin-top: 0;\r\n}\r\n\r\n#hrId {\r\n  margin-bottom: 0;\r\n}\r\n\r\nul {\r\n  list-style: none;\r\n  padding: 0 0;\r\n  margin-top: 0;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n#toDolist {\r\n  padding: 0 10px;\r\n  margin: auto;\r\n}\r\n\r\n#title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\nh1 {\r\n  font-size: 20px;\r\n}\r\n\r\n.eachTask,\r\n#enterTask {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\ni {\r\n  padding-right: 5px;\r\n  color: grey;\r\n}\r\n\r\n#addTask {\r\n  font-style: italic;\r\n  height: 20px;\r\n  border: none;\r\n  width: 100%;\r\n}\r\n\r\n#clear {\r\n  height: 30px;\r\n  background-color: rgb(240, 240, 240);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  color: grey;\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  #toDolist {\r\n    width: 70%;\r\n    margin: auto;\r\n  }\r\n}\r\n\r\nbutton {\r\n  border: none;\r\n  background-color: white;\r\n}\r\n\r\n.task {\r\n  margin-top: 10px;\r\n}\r\n\r\n#addButton,\r\n.delButton {\r\n  font-size: 25px;\r\n}\r\n\r\n.task-item {\r\n  height: 20px;\r\n  border: none;\r\n  width: 80%;\r\n}\r\n\r\n.inputWidth {\r\n  width: 100%;\r\n  margin-bottom: 10px;\r\n}\r\n\r\nhr {\r\n  margin-top: 0;\r\n}\r\n\r\n#hrId {\r\n  margin-bottom: 0;\r\n}\r\n\r\nul {\r\n  list-style: none;\r\n  padding: 0 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.completed-task {\r\n  text-decoration: line-through;\r\n  color: grey;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17726,6 +17726,16 @@ class Task {
             this.taskArray = this.taskArray.filter((task) => task !== ptask);
         }
 
+        getTasks() {
+            let tasks;
+            if (localStorage.getItem('storedTask') === null) {
+              tasks = [];
+            } else {
+              tasks = JSON.parse(localStorage.getItem('storedTask'));
+            }
+        
+            return tasks;
+          }
     }
     
 const addedTask = new Task([])
@@ -17772,6 +17782,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _class_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+/* harmony import */ var _checkbox_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
+
+
 
 
 const displayList = () => {
@@ -17779,7 +17792,9 @@ const displayList = () => {
     list.innerHTML = '';
     if (_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray.length) {
         for (let i = 0; i < _class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray.length; i+=1){
-            const allTsk = document.createElement('div')
+
+            if (_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].completed === false){
+                const allTsk = document.createElement('div')
             list.appendChild(allTsk)
             
             const li = document.createElement('div')
@@ -17788,7 +17803,7 @@ const displayList = () => {
 
             const taskInput = document.createElement('div')
             taskInput.classList.add('inputWidth')
-            taskInput.innerHTML = `<input type="checkbox" name=" " class="task" id="${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index}">
+            taskInput.innerHTML = `<input type="checkbox" name=" " class="task" id="input${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index}">
             
             <input contentEditable id="edible${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index}" class="task-item" onchange="handleInputChange(${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index})" value="${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].description}" />
             
@@ -17803,6 +17818,7 @@ const displayList = () => {
                 _class_js__WEBPACK_IMPORTED_MODULE_0__["default"].removeTask(_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i]);
                 _class_js__WEBPACK_IMPORTED_MODULE_0__["default"].reAssignIndex()
                 displayList();
+                (0,_checkbox_js__WEBPACK_IMPORTED_MODULE_1__["default"])()
             }
 
             li.appendChild(deleteButton)   
@@ -17810,6 +17826,43 @@ const displayList = () => {
             const horLine = document.createElement('hr')
             
             allTsk.appendChild(horLine)
+            
+
+            } else {
+                const allTsk = document.createElement('div')
+            list.appendChild(allTsk)
+            
+            const li = document.createElement('div')
+            li.classList.add('eachTask')
+            allTsk.appendChild(li)
+
+            const taskInput = document.createElement('div')
+            taskInput.classList.add('inputWidth')
+            taskInput.innerHTML = `<input type="checkbox" name=" " class="task" id="input${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index}" checked>
+            
+            <input contentEditable id="edible${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index}" class="task-item completed-task" onchange="handleInputChange(${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].index})" value="${_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i].description}" />
+            
+            `
+            li.appendChild(taskInput)
+
+            const deleteButton = document.createElement('button')
+            deleteButton.classList.add('delButton')
+            deleteButton.innerHTML = `<i class="fa fa-ellipsis-v">`
+            
+            deleteButton.onclick = () => {
+                _class_js__WEBPACK_IMPORTED_MODULE_0__["default"].removeTask(_class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray[i]);
+                _class_js__WEBPACK_IMPORTED_MODULE_0__["default"].reAssignIndex()
+                displayList();
+                (0,_checkbox_js__WEBPACK_IMPORTED_MODULE_1__["default"])()
+            }
+
+            li.appendChild(deleteButton)   
+
+            const horLine = document.createElement('hr')
+            
+            allTsk.appendChild(horLine)
+            
+            }
             
  
         }
@@ -17822,6 +17875,51 @@ const displayList = () => {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayList);
+
+/***/ }),
+/* 15 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _class_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+/* harmony import */ var _localstorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
+
+
+
+const checkBox = () => {
+    const allBox = document.querySelectorAll('.task')
+
+    allBox.forEach((each) => {
+        each.addEventListener('change', (e) =>{
+            _class_js__WEBPACK_IMPORTED_MODULE_0__["default"].taskArray.forEach((task) =>{
+                if((e.target.id === `input${task.index}`) && (task.completed === false)) {
+                    task.completed = true
+                    e.target.checked = true
+                    ;(0,_localstorage_js__WEBPACK_IMPORTED_MODULE_1__.addToLocalStorage)()
+                    const strikeTask = document.getElementById(`edible${task.index}`)
+                    strikeTask.style.textDecoration = 'line-through'
+                    strikeTask.style.color = 'grey'
+                    
+
+                } else if ((e.target.id ===`input${task.index}`) && (task.completed === true)) {
+                    task.completed = false
+                    e.target.checked = false
+                    ;(0,_localstorage_js__WEBPACK_IMPORTED_MODULE_1__.addToLocalStorage)()
+                    const strikeTask = document.getElementById(`edible${task.index}`)
+                    strikeTask.style.textDecoration = 'none'
+                    strikeTask.style.color = 'black'
+                }
+            })
+        })
+    })
+
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (checkBox);
 
 /***/ })
 /******/ 	]);
@@ -17932,6 +18030,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_class_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
 /* harmony import */ var _module_localstorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
 /* harmony import */ var _module_displaylist_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
+/* harmony import */ var _module_checkbox_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
+
+
+
 
 
 
@@ -17942,10 +18044,15 @@ __webpack_require__.r(__webpack_exports__);
 const filledTask = document.getElementById('addButton')
 filledTask.addEventListener('click', () => {
     const myTask = document.getElementById('addTask')
-    _module_class_js__WEBPACK_IMPORTED_MODULE_2__["default"].taskObject(myTask.value)
+    if (myTask.value) {
+        _module_class_js__WEBPACK_IMPORTED_MODULE_2__["default"].taskObject(myTask.value)
     _module_class_js__WEBPACK_IMPORTED_MODULE_2__["default"].reAssignIndex()
     ;(0,_module_displaylist_js__WEBPACK_IMPORTED_MODULE_4__["default"])()
     myTask.value = '';
+    (0,_module_checkbox_js__WEBPACK_IMPORTED_MODULE_5__["default"])()
+    } else {
+        alert('Kindly fill the task to add')
+    }
 })
 
 const handleInputChange = (id) => {
@@ -17959,15 +18066,26 @@ const handleInputChange = (id) => {
    ;(0,_module_displaylist_js__WEBPACK_IMPORTED_MODULE_4__["default"])()
 }
 
+
+
 if (localStorage.getItem('storedTask') == null) {
     (0,_module_localstorage_js__WEBPACK_IMPORTED_MODULE_3__.addToLocalStorage)();
 } else {
     (0,_module_localstorage_js__WEBPACK_IMPORTED_MODULE_3__.getFromLocalStorage)();
 }
 
+const clearBtn = document.getElementById('clear')
+clearBtn.addEventListener('click', () => {
+    let task = _module_class_js__WEBPACK_IMPORTED_MODULE_2__["default"].getTasks()
+    let newArr = task.filter((each) => each.completed === false)
+    _module_class_js__WEBPACK_IMPORTED_MODULE_2__["default"].taskArray = newArr
+    ;(0,_module_localstorage_js__WEBPACK_IMPORTED_MODULE_3__.addToLocalStorage)()
+    _module_class_js__WEBPACK_IMPORTED_MODULE_2__["default"].reAssignIndex()
+    window.location.reload()
+})
+
 window.handleInputChange = handleInputChange;
-
-
+(0,_module_checkbox_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
 })();
 
 /******/ })()
