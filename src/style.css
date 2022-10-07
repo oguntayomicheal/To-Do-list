@@ -90,3 +90,8 @@ ul {
   padding: 0 0;
   margin-top: 0;
 }
+
+.completed-task {
+  text-decoration: line-through;
+  color: grey;
+}

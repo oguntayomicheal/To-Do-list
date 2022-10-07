@@ -25,6 +25,7 @@ class Task {
             this.taskArray = this.taskArray.filter((task) => task !== ptask);
         }
 
+       
     }
     
 const addedTask = new Task([])
