@@ -1,39 +1,34 @@
 import _ from 'lodash';
 import './style.css';
 
+import addedTask from "./module/class.js"
+import { addToLocalStorage, getFromLocalStorage } from "./module/localstorage.js"
+import displayList from "./module/displaylist.js"
 
-const taskArray = [
-    {
-        description : "I want to Eat",
-        completed : true,
-        index: 0
-    },
-    {
-        description : "cook my meal",
-        completed : false,
-        index: 1
-    },
-    {
-        description : "dance in the club",
-        completed : true,
-        index: 2
+const filledTask = document.getElementById('addButton')
+filledTask.addEventListener('click', () => {
+    const myTask = document.getElementById('addTask')
+    addedTask.taskObject(myTask.value)
+    addedTask.reAssignIndex()
+    displayList()
+    myTask.value = '';
+})
+
+const handleInputChange = (id) => {
+   const theid = document.getElementById(`edible${id}`);
+   for(let p of addedTask.taskArray){
+    if(p.index === id){
+        p.description = theid.value
     }
+   }
+   addToLocalStorage()
+   displayList()
+}
 
-]
+if (localStorage.getItem('storedTask') == null) {
+    addToLocalStorage();
+} else {
+    getFromLocalStorage();
+}
 
-const list = document.getElementById('list')
-
- const createList = () => {
-    const sortedArray = taskArray.sort((a, b)=> a.index - b.index)
-    sortedArray.forEach((task) => {
-    const eachTask = document.createElement('li');
-    eachTask.innerHTML = `<div id="eachTask">
-        <div><input type="checkbox" name=" " class="task">
-        <label for="">${task.description}</label></div>
-        <i class="fa fa-ellipsis-v"></i>
-        </div><hr>`
-    list.appendChild(eachTask)
-  })
- }
-
- document.addEventListener('DOMContentLoaded', createList)
+window.handleInputChange = handleInputChange;
