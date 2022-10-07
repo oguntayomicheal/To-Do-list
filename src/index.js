@@ -41,6 +41,15 @@ if (localStorage.getItem('storedTask') == null) {
     getFromLocalStorage();
 }
 
+const clearBtn = document.getElementById('clear')
+clearBtn.addEventListener('click', () => {
+    let task = addedTask.getTasks()
+    let newArr = task.filter((each) => each.completed === false)
+    addedTask.taskArray = newArr
+    addToLocalStorage()
+    addedTask.reAssignIndex()
+    window.location.reload()
+})
 
 window.handleInputChange = handleInputChange;
 checkBox();
