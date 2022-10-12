@@ -22,7 +22,7 @@ class Task {
         }
     
         removeTask(ptask) {
-            this.taskArray = this.taskArray.filter((task) => task !== ptask);
+            this.taskArray = this.taskArray.filter((task) => task.description !== ptask.description);
         }
 
         getTasks() {
