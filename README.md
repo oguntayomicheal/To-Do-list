@@ -17,7 +17,7 @@ This is a single page application that allows users to keep track of their tasks
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://mike-devloper.github.io/To-Do-list/dist/)
 
 
 ## Getting Started
@@ -32,9 +32,9 @@ To get a local copy up and running follow these simple example steps.
 
 👤 **Author1**
 
-- GitHub: [@Mike-dev](https://github.com/githubhandle)
-- Twitter: [@OguntayoMicheal](https://twitter.com/twitterhandle)
-- LinkedIn: [OguntayoMicheal](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@oguntayomicheal](https://github.com/oguntayomicheal)
+- Twitter: [@OguntayoMicheal](https://twitter.com/Oguns_micky)
+- LinkedIn: [OguntayoMicheal](https://www.linkedin.com/in/ogunsmicky/)
 
 
 ## 🤝 Contributing
