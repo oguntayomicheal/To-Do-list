@@ -1,16 +1,15 @@
-import addedTask from "./class.js"
-import displayList from "./displaylist.js";
+import addedTask from './class.js';
+import displayList from './displaylist.js';
 
 const addToLocalStorage = () => {
-    const stringifyArray = JSON.stringify(addedTask.taskArray);
-    localStorage.setItem('storedTask', stringifyArray);
-}
+  const stringifyArray = JSON.stringify(addedTask.taskArray);
+  localStorage.setItem('storedTask', stringifyArray);
+};
 
 const getFromLocalStorage = () => {
-    const stringifyArray = localStorage.getItem('storedTask');
-    addedTask.taskArray = JSON.parse(stringifyArray);
-    displayList()
-}
+  const stringifyArray = localStorage.getItem('storedTask');
+  addedTask.taskArray = JSON.parse(stringifyArray);
+  displayList();
+};
 
-
-export {addToLocalStorage, getFromLocalStorage}
+export { addToLocalStorage, getFromLocalStorage };

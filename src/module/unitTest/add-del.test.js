@@ -3,15 +3,13 @@
  */
 
 import addedTask from '../class.js';
-import displayList from "../displaylist.js"
-import removeTask from "./deleteFunction.js"
-
-
+import displayList from '../displaylist.js';
+import removeTask from './deleteFunction.js';
 
 describe('Add and delete functions', () => {
-    test('Add to task', () =>{
-        //Arrange
-        document.body.innerHTML = `
+  test('Add to task', () => {
+    // Arrange
+    document.body.innerHTML = `
         <div id="toDolist">
         <div id="title">
             <h1>
@@ -32,36 +30,34 @@ describe('Add and delete functions', () => {
         
         <div id="clear">Clear all completed</div></a>
          </div> `;
-         
-         //act
-         addedTask.taskObject('Dance');
-        displayList()
-        const myTask = document.querySelector('.task-item')
-        
-        //assert
-        expect(myTask.value).toBe('Dance')
-    });
 
+    // act
+    addedTask.taskObject('Dance');
+    displayList();
+    const myTask = document.querySelector('.task-item');
 
+    // assert
+    expect(myTask.value).toBe('Dance');
+  });
 
-test('Delete task', () => {
-        let taskArray = [
-            {
-                description : "Dance",
-                completed : false,
-                index: 0
-            },
-            {
-                description : "Hello",
-                completed : false,
-                index: 0
-            }
-        ]
+  test('Delete task', () => {
+    const taskArray = [
+      {
+        description: 'Dance',
+        completed: false,
+        index: 0,
+      },
+      {
+        description: 'Hello',
+        completed: false,
+        index: 0,
+      },
+    ];
 
-        //Act
-        removeTask(taskArray, taskArray[0])
+    // Act
+    removeTask(taskArray, taskArray[0]);
 
-        //Assert
-        expect(addedTask.taskArray.length).toBe(1)
-    })
+    // Assert
+    expect(addedTask.taskArray.length).toBe(1);
+  });
 });

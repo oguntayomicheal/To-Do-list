@@ -1,20 +1,18 @@
-
-
 const handleInputChange = (taskArray, inputValue) => {
-    taskArray[0].description = inputValue;
-    return taskArray;
-}
+  taskArray[0].description = inputValue;
+  return taskArray;
+};
 
 const taskStatus = (taskArray) => {
-   if (taskArray[0].completed === false) {
+  if (taskArray[0].completed === false) {
     taskArray[0].completed = true;
-   } 
-   return taskArray
-}
+  }
+  return taskArray;
+};
 
 const clearCompleted = (taskArray) => {
-    let newArr = taskArray.filter((each) => each.completed === false)
-    return newArr
-}
+  const newArr = taskArray.filter((each) => each.completed === false);
+  return newArr;
+};
 
-export {clearCompleted, handleInputChange, taskStatus}
+export { clearCompleted, handleInputChange, taskStatus };

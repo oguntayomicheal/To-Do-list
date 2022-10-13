@@ -1,42 +1,42 @@
-import {addToLocalStorage} from "./localstorage.js"
+import { addToLocalStorage } from './localstorage.js';
 
 class Task {
-        constructor(array) {
-            this.taskArray = array;
-        }
-    
-        taskObject(addTask) {
-            const eachTask = {
-                description : addTask,
-                completed : false,
-                index: 0
-            }
-            this.taskArray.push(eachTask);
-        }
+  constructor(array) {
+    this.taskArray = array;
+  }
 
-        reAssignIndex() {
-            this.taskArray.forEach((element, i) => {
-              element.index = i + 1;
-            });
-            addToLocalStorage()
-        }
-    
-        removeTask(ptask) {
-            this.taskArray = this.taskArray.filter((task) => task.description !== ptask.description);
-        }
+  taskObject(addTask) {
+    const eachTask = {
+      description: addTask,
+      completed: false,
+      index: 0,
+    };
+    this.taskArray.push(eachTask);
+  }
 
-        getTasks() {
-            let tasks;
-            if (localStorage.getItem('storedTask') === null) {
-              tasks = [];
-            } else {
-              tasks = JSON.parse(localStorage.getItem('storedTask'));
-            }
-        
-            return tasks;
-          }
+  reAssignIndex() {
+    this.taskArray.forEach((element, i) => {
+      element.index = i + 1;
+    });
+    addToLocalStorage();
+  }
+
+  removeTask(ptask) {
+    this.taskArray = this.taskArray.filter((task) => task.description !== ptask.description);
+  }
+
+  getTasks() {
+    let tasks;
+    if (localStorage.getItem('storedTask') === null) {
+      tasks = [];
+    } else {
+      tasks = JSON.parse(localStorage.getItem('storedTask'));
     }
-    
-const addedTask = new Task([])
+
+    return tasks;
+  }
+}
+
+const addedTask = new Task([]);
 
 export default addedTask;
