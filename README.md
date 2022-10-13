@@ -23,7 +23,7 @@
 To get a local copy up and running follow these simple example steps.
 
 - clone this repository (click the green code button to copy link)
-- install project dependecies (npm install)
+- install project dependecies - `npm install`
 
 ## Authors
 
