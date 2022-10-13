@@ -69,4 +69,13 @@ describe('Task edit, update and clear', () => {
 
    })
 
+   test('Update completed status', () => {
+    addedTask.taskObject('Dance')
+
+    let taskArray = taskStatus(addedTask.taskArray)
+
+    expect(taskArray[0].completed).toBe(true)
+   })
+   
+   
 })
