@@ -77,5 +77,23 @@ describe('Task edit, update and clear', () => {
     expect(taskArray[0].completed).toBe(true)
    })
    
-   
+    test('clear completed task', ()=> {
+        //Arrange
+        let taskArray = [
+            {
+                description : "Dance",
+                completed : false,
+                index: 0
+            },
+            {
+                description : "Hello",
+                completed : true,
+                index: 1
+            }
+        ]
+        //Act
+         taskArray = clearCompleted(taskArray);
+        //Assert
+        expect(taskArray.length).toBe(1)
+    })
 })
