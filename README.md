@@ -1,12 +1,9 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
-**To Do list**
+# To Do list Application
 
-> Description the project.
 
-This is a single page application that allows users to keep track of their tasks. Users can add the task and also check the checkbox if the task has been completed.
-
+> This is a single page application that allows users to keep track of their tasks. Users can add the task and also check the checkbox if the task has been completed.
 
 ## Built With
 
@@ -17,7 +14,7 @@ This is a single page application that allows users to keep track of their tasks
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://mike-devloper.github.io/To-Do-list/dist/)
+[Live Demo Link](https://oguntayomicheal.github.io/To-Do-list/dist/)
 
 
 ## Getting Started
@@ -34,7 +31,7 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@oguntayomicheal](https://github.com/oguntayomicheal)
 - Twitter: [@OguntayoMicheal](https://twitter.com/Oguns_micky)
-- LinkedIn: [OguntayoMicheal](https://www.linkedin.com/in/ogunsmicky/)
+- LinkedIn: [@OguntayoMicheal](https://www.linkedin.com/in/ogunsmicky/)
 
 
 ## 🤝 Contributing
