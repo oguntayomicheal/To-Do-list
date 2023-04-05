@@ -3,8 +3,10 @@
 }
 
 #toDolist {
-  padding: 0 10px;
+  padding: 10px 10px;
   margin: auto;
+  margin-top: 100px;
+  border-style: groove;
 }
 
 #title {
@@ -47,8 +49,7 @@ i {
 
 @media screen and (min-width: 768px) {
   #toDolist {
-    width: 70%;
-    margin: auto;
+    width: 50%;
   }
 }
 
