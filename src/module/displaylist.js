@@ -25,7 +25,7 @@ const displayList = () => {
 
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delButton');
-        deleteButton.innerHTML = '<i class="fa fa-ellipsis-v">';
+        deleteButton.innerHTML = '<i class="fa fa-trash">';
 
         deleteButton.onclick = () => {
           addedTask.removeTask(addedTask.taskArray[i]);
